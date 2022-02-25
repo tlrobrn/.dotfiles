@@ -1,14 +1,30 @@
 # .dotfiles
 
-personal dotfiles for mac and pco cloud box computers
+personal dotfiles for mac and pco cloud-box
 
 ## Requirements
 
-- rcm: `brew install rcm` or `sudo apt install rcm`
+### This Repo
+
+```sh
+git clone git@github.com:tlrobrn/.dotfiles.git`
+```
+
+### RCM
+
+Mac:
+
+```sh
+brew install rcm
+```
+
+Cloud-Box:
+```sh
+sudo apt install rcm
+```
 
 ## Usage
 
-```zsh
-git clone git@github.com:tlrobrn/.dotfiles.git
+```sh
 RCRC=$HOME/.dotfiles/rcrc rcup -t pco
 ```
