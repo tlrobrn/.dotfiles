@@ -30,6 +30,6 @@ class OSCommand
   end
 
   def debian?
-    RUBY_PLATFORM.include? "linux" && !`which apt`.empty?
+    RUBY_PLATFORM.include?("linux") && !`which apt`.empty?
   end
 end
