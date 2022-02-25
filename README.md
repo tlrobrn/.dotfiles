@@ -4,6 +4,8 @@ personal dotfiles for mac and pco cloud-box
 
 ## Requirements
 
+(zsh and ruby)
+
 ### This Repo
 
 ```sh
