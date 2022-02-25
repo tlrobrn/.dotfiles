@@ -7,7 +7,7 @@ personal dotfiles for mac and pco cloud-box
 ### This Repo
 
 ```sh
-git clone git@github.com:tlrobrn/.dotfiles.git`
+git clone git@github.com:tlrobrn/.dotfiles.git
 ```
 
 ### RCM
