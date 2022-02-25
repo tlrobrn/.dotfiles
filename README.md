@@ -13,7 +13,6 @@ git clone git@github.com:tlrobrn/.dotfiles.git
 ### RCM
 
 Mac:
-
 ```sh
 brew install rcm
 ```
@@ -25,6 +24,12 @@ sudo apt install rcm
 
 ## Usage
 
+Mac:
+```sh
+RCRC=$HOME/.dotfiles/rcrc rcup -t mac
+```
+
+Cloud-Box:
 ```sh
 RCRC=$HOME/.dotfiles/rcrc rcup -t pco
 ```
