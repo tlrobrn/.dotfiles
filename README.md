@@ -10,5 +10,5 @@ personal dotfiles for mac and pco cloud box computers
 
 ```zsh
 git clone git@github.com:tlrobrn/.dotfiles.git
-rcup -t pco
+RCRC=$HOME/.dotfiles/rcrc rcup -t pco
 ```
