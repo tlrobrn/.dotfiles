@@ -1,0 +1,14 @@
+[init]
+	defaultBranch = main
+
+[user]
+  name = Taylor O'Brien
+  email = tlrobrn@users.noreply.github.com
+
+[include]
+  path = ~/.config/git/gitalias.txt
+
+[alias]
+  st = status -sb
+  pf = push --force-with-lease
+  l = log --graph --oneline

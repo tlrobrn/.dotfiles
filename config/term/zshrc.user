@@ -1,0 +1,32 @@
+export SAVEHIST=10000
+setopt hist_ignore_all_dups
+export EDITOR=nvim
+export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!{.git,node_modules,deps,_build,.elixir_ls}/*"'
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/opt/openssl/lib/pkgconfig
+alias edup="nvim +:PlugUpgrade +:PlugUpdate +:qall"
+alias g="git"
+alias v="nvim"
+alias ll="exa -lh"
+alias la="ll -a"
+alias dbup="pg_ctl -D /usr/local/var/postgres start"
+alias gc='git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done'
+
+# only correct commands not args
+if [[ "$ENABLE_CORRECTION" == "true" ]]; then
+  unsetopt correct_all
+  setopt correct
+fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.asdf/asdf.sh ] && source ~/.asdf/asdf.sh
+
+vs () {
+  workspace=$(ls *.code-workspace | head -n 1)
+  if [[ -n $workspace ]]; then
+    echo "opening workspace: $workspace"
+    /Applications/Visual\ Studio\ Code.app/Contents/MacOS/Electron $workspace & disown
+  else
+    echo "opening directory: $(pwd)"
+    /Applications/Visual\ Studio\ Code.app/Contents/MacOS/Electron . & disown
+  fi
+}
