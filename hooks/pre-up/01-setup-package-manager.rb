@@ -12,7 +12,7 @@ class SetupPackageManager < OSCommand
   end
 
   def debian
-    `sudo apt update`
+    `sudo apt-get update`
   end
 
   def install_brew?
