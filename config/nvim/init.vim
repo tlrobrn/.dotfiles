@@ -32,7 +32,6 @@ let g:coc_global_extensions = [
       \'coc-html',
       \'coc-json',
       \'coc-marketplace',
-      \'coc-nginx',
       \'coc-rls',
       \'coc-solargraph',
       \'coc-sql',
