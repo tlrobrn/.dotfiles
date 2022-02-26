@@ -26,22 +26,22 @@ call plug#end()
 
 " COC Extensions
 let g:coc_global_extensions = [
-  'coc-css',
-  'coc-elixir',
-  'coc-eslint',
-  'coc-html',
-  'coc-json',
-  'coc-marketplace',
-  'coc-nginx',
-  'coc-rls',
-  'coc-solargraph',
-  'coc-sql',
-  'coc-sumneko-lua',
-  'coc-tailwindcss',
-  'coc-toml',
-  'coc-tsserver',
-  'coc-yaml',
-]
+      \'coc-css',
+      \'coc-elixir',
+      \'coc-eslint',
+      \'coc-html',
+      \'coc-json',
+      \'coc-marketplace',
+      \'coc-nginx',
+      \'coc-rls',
+      \'coc-solargraph',
+      \'coc-sql',
+      \'coc-sumneko-lua',
+      \'coc-tailwindcss',
+      \'coc-toml',
+      \'coc-tsserver',
+      \'coc-yaml',
+      \]
 
 " Hybrid Line numbers
 set number
