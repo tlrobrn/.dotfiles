@@ -12,7 +12,7 @@ class PlugUpdate < OSCommand
   end
 
   def update
-    `nvim +'PlugUpdate' +qa`
+    stream_command("nvim +'PlugUpdate' +qa")
   end
 end
 

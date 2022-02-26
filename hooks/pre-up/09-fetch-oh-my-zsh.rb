@@ -12,7 +12,7 @@ class FetchOhMyZsh < OSCommand
   end
 
   def fetch_oh_my_zsh
-    `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+    stream_command('sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"')
   end
 
   def skip?

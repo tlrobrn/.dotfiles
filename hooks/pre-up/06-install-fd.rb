@@ -4,12 +4,12 @@ require_relative "../os_command"
 
 class InstallFd < OSCommand
   def mac
-    `brew install fd`
+    stream_command("brew install fd")
   end
 
   def debian
-    `sudo apt-get -y install fd-find`
-    `ln -s $(which fdfind) #{File.expand_path("~/.local/bin/fd")}`
+    stream_command("sudo apt-get -y install fd-find")
+    stream_command("ln -s $(which fdfind) #{File.expand_path("~/.local/bin/fd")}")
   end
 
   def skip?

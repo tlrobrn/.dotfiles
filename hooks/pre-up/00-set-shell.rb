@@ -4,15 +4,15 @@ require_relative "../os_command"
 
 class SetShell < OSCommand
   def mac
-    `brew install zsh` if install_zsh?
+    stream_command("brew install zsh") if install_zsh?
 
-    `chsh -s $(which zsh)`
+    stream_command("chsh -s $(which zsh)")
   end
 
   def debian
-    `sudo apt-get -y install zsh` if install_zsh?
+    stream_command("sudo apt-get -y install zsh") if install_zsh?
 
-    `sudo chsh $(whoami) -s $(which zsh)`
+    stream_command("sudo chsh $(whoami) -s $(which zsh)")
   end
 
   def skip?

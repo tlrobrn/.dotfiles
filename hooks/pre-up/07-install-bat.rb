@@ -4,12 +4,12 @@ require_relative "../os_command"
 
 class InstallBat < OSCommand
   def mac
-    `brew install bat`
+    stream_command("brew install bat")
   end
 
   def debian
-    `sudo apt-get -y install bat`
-    `ln -s $(which batcat) #{File.expand_path("~/.local/bin/bat")}`
+    stream_command("sudo apt-get -y install bat")
+    stream_command("ln -s $(which batcat) #{File.expand_path("~/.local/bin/bat")}")
   end
 
   def skip?

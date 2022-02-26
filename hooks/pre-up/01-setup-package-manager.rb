@@ -5,14 +5,14 @@ require_relative "../os_command"
 class SetupPackageManager < OSCommand
   def mac
     if install_brew?
-      `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+      stream_command('/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"')
     else
-      `brew update`
+      stream_command("brew update")
     end
   end
 
   def debian
-    `sudo apt-get update`
+    stream_command("sudo apt-get update")
   end
 
   def install_brew?

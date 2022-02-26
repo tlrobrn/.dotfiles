@@ -4,11 +4,11 @@ require_relative "../os_command"
 
 class InstallNeovim < OSCommand
   def mac
-    `brew install neovim`
+    stream_command("brew install neovim")
   end
 
   def debian
-    `sudo apt-get -y install neovim`
+    stream_command("sudo apt-get -y install neovim")
   end
 
   def skip?

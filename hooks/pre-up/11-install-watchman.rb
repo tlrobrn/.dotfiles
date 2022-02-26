@@ -4,11 +4,11 @@ require_relative "../os_command"
 
 class InstallWatchman < OSCommand
   def mac
-    `brew install watchman`
+    stream_command("brew install watchman")
   end
 
   def debian
-    `sudo apt-get -y install watchman`
+    stream_command("sudo apt-get -y install watchman")
   end
 
   def skip?

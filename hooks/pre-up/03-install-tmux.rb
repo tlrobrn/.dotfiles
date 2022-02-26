@@ -4,11 +4,11 @@ require_relative "../os_command"
 
 class InstallTmux < OSCommand
   def mac
-    `brew install tmux`
+    stream_command("brew install tmux")
   end
 
   def debian
-    `sudo apt-get -y install tmux`
+    stream_command("sudo apt-get -y install tmux")
   end
 
   def skip?
