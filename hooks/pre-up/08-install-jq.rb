@@ -8,7 +8,7 @@ class InstallJq < OSCommand
   end
 
   def debian
-    `sudo apt install jq`
+    `sudo apt-get -y install jq`
   end
 
   def skip?

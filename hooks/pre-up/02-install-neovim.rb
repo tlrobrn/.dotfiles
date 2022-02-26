@@ -8,7 +8,7 @@ class InstallNeovim < OSCommand
   end
 
   def debian
-    `sudo apt install neovim`
+    `sudo apt-get -y install neovim`
   end
 
   def skip?

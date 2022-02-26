@@ -8,7 +8,7 @@ class InstallFd < OSCommand
   end
 
   def debian
-    `sudo apt install fd-find`
+    `sudo apt-get -y install fd-find`
     `ln -s $(which fdfind) #{File.expand_path("~/.local/bin/fd")}`
   end
 

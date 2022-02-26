@@ -8,7 +8,7 @@ class InstallTmux < OSCommand
   end
 
   def debian
-    `sudo apt install tmux`
+    `sudo apt-get -y install tmux`
   end
 
   def skip?

@@ -8,7 +8,7 @@ class InstallRipgrep < OSCommand
   end
 
   def debian
-    `sudo apt install ripgrep`
+    `sudo apt-get -y install ripgrep`
   end
 
   def skip?

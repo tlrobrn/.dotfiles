@@ -21,7 +21,7 @@ brew install rcm
 
 Cloud-Box:
 ```sh
-sudo apt install rcm
+sudo apt-get -y install rcm
 ```
 
 ## Usage

@@ -8,7 +8,7 @@ class InstallBat < OSCommand
   end
 
   def debian
-    `sudo apt install bat`
+    `sudo apt-get -y install bat`
     `ln -s $(which batcat) #{File.expand_path("~/.local/bin/bat")}`
   end
 

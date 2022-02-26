@@ -10,7 +10,7 @@ class SetShell < OSCommand
   end
 
   def debian
-    `sudo apt install zsh` if install_zsh?
+    `sudo apt-get -y install zsh` if install_zsh?
 
     `sudo chsh $(whoami) -s $(which zsh)`
   end

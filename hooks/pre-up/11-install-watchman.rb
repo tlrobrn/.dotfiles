@@ -8,7 +8,7 @@ class InstallWatchman < OSCommand
   end
 
   def debian
-    `sudo apt install watchman`
+    `sudo apt-get -y install watchman`
   end
 
   def skip?
