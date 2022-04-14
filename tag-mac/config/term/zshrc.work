@@ -1,0 +1,5 @@
+[ -s ~/Code/pco/bin/pco ] && eval "$(~/Code/pco/bin/pco init -)"
+
+export CDPATH=$CDPATH:~/Code
+
+export PCO_CLOUDBOX_AFTER_PROVISION_SCRIPT_PATH=~/.config/cloud-box/post-provision.sh
