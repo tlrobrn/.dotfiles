@@ -55,6 +55,9 @@ autocmd InsertEnter * highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=234 g
 autocmd InsertLeave * highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=233 guifg=NONE guibg=#121212
 hi CursorLineNr    term=bold cterm=bold ctermfg=012 gui=bold
 
+" Typescript React fix
+autocmd BufNewFile,BufRead *.tsx set ft=typescript.tsx
+
 set nowrap
 set showmatch
 set splitbelow
