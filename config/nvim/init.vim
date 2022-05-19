@@ -12,6 +12,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'neomake/neomake'
+Plug 'numToStr/Comment.nvim'
 Plug 'rizzatti/dash.vim'
 Plug 'rlue/vim-fold-rspec'
 Plug 'scrooloose/nerdtree'
@@ -57,6 +58,9 @@ hi CursorLineNr    term=bold cterm=bold ctermfg=012 gui=bold
 
 " Typescript React fix
 autocmd BufNewFile,BufRead *.tsx set ft=typescript.tsx
+
+" Comment.nvim config
+lua require('Comment').setup()
 
 set nowrap
 set showmatch
