@@ -8,4 +8,4 @@ sudo apt-get update
 sudo apt-get -y install rcm
 
 echo "RCUP"
-RCRC=$HOME/.dotfiles/rcrc rcup -t pco
+RCRC=$HOME/.dotfiles/rcrc rcup -f -t pco

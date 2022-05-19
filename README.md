@@ -29,10 +29,10 @@ sudo apt-get -y install rcm
 
 Mac:
 ```sh
-RCRC=$HOME/.dotfiles/rcrc rcup -t mac
+RCRC=$HOME/.dotfiles/rcrc rcup -f -t mac
 ```
 
 Cloud-Box:
 ```sh
-RCRC=$HOME/.dotfiles/rcrc rcup -t pco
+RCRC=$HOME/.dotfiles/rcrc rcup -f -t pco
 ```
