@@ -29,10 +29,14 @@ sudo apt-get -y install rcm
 
 Mac:
 ```sh
-RCRC=$HOME/.dotfiles/rcrc rcup -f -t mac
+RCRC=$HOME/.dotfiles/rcrc rcup -t mac
 ```
 
 Cloud-Box:
 ```sh
-RCRC=$HOME/.dotfiles/rcrc rcup -f -t pco
+RCRC=$HOME/.dotfiles/rcrc rcup -t pco
 ```
+
+### Adapting for personal use
+
+Make sure you edit the `user` section in the [gitconfig](gitconfig)
