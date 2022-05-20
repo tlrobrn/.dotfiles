@@ -8,11 +8,16 @@ class InstallNeovim < OSCommand
   end
 
   def debian
-    stream_command("sudo apt-get -y install neovim")
+    stream_command("curl -L https://github.com/neovim/neovim/releases/latest/download/nvim.appimage -o #{path}")
+    stream_command("chmod u+x #{path}")
   end
 
   def skip?
     !`which nvim`.empty?
+  end
+
+  def path
+    "/usr/local/bin/nvim"
   end
 end
 
