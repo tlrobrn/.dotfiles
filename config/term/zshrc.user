@@ -10,6 +10,7 @@ alias ll="exa -lh"
 alias la="ll -a"
 alias dbup="pg_ctl -D /usr/local/var/postgres start"
 alias gc='git checkout -q master && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done'
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # only correct commands not args
 if [[ "$ENABLE_CORRECTION" == "true" ]]; then

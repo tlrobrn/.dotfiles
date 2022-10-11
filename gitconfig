@@ -12,3 +12,5 @@
   st = status -sb
   pf = push --force-with-lease
   l = log --graph --oneline
+[push]
+	autoSetupRemote = true
