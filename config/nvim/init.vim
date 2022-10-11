@@ -37,7 +37,6 @@ let g:coc_global_extensions = [
       \'coc-solargraph',
       \'coc-sql',
       \'coc-sumneko-lua',
-      \'coc-tailwindcss',
       \'coc-toml',
       \'coc-tsserver',
       \'coc-yaml',
