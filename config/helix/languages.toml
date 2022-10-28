@@ -1,0 +1,9 @@
+[[language]]
+name = "javascript"
+auto-format = true
+file-types = ["js", "jsx"]
+
+[[language]]
+name = "typescript"
+auto-format = true
+file-types = ["ts", "tsx"]

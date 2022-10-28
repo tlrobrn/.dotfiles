@@ -1,0 +1,14 @@
+[editor]
+true-color = true
+auto-format = true
+line-number = "relative"
+color-modes = true
+theme = "preto"
+
+[keys.insert]
+j = { k = "normal_mode" } # Maps `jk` to exit insert mode
+
+[editor.indent-guides]
+render = true
+character = "."
+
