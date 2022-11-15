@@ -1,23 +1,39 @@
 -- Manage Plugins
 require"paq" {
-  "savq/paq-nvim"; -- Package Manager
+  "aktersnurra/no-clown-fiesta.nvim"; -- colorscheme
   "neovim/nvim-lspconfig"; -- Configurations for nvim LSP
-  {"glepnir/lspsaga.nvim", branch="main"};
-  {"ms-jpq/coq_nvim", branch="coq"};
-  {"ms-jpq/coq.artifacts", branch="artifacts"};
-  {"ms-jpq/coq.thirdparty", branch="3p"};
-  "nvim-lualine/lualine.nvim";
-  {"nvim-tree/nvim-web-devicons", opt=true};
-  {"nvim-treesitter/nvim-treesitter", run=function() vim.cmd "TSUpdate" end};
+  "jose-elias-alvarez/null-ls.nvim"; -- LSP shim for other tools
+  "nvim-lualine/lualine.nvim"; -- Status line
+  "savq/paq-nvim"; -- Package Manager
+  "terrortylor/nvim-comment"; -- comment toggler
+  {"glepnir/lspsaga.nvim", branch="main"}; -- LSP UI
+  {"ms-jpq/chadtree", branch="chad", run="python3 -m chadtree deps"}; -- file tree
+  {"ms-jpq/coq.artifacts", branch="artifacts"}; -- Completion snippets
+  {"ms-jpq/coq.thirdparty", branch="3p"}; -- Completion 3rdparty libs
+  {"ms-jpq/coq_nvim", branch="coq"}; -- Completion
+  {"nvim-tree/nvim-web-devicons", opt=true}; -- font icons
+  "nvim-lua/plenary.nvim"; --fuzzy finder dep
+  {"nvim-telescope/telescope.nvim", branch="0.1.x"}; -- fuzzy finder
+  {"nvim-treesitter/nvim-treesitter", run=function() vim.cmd "TSUpdate" end}; -- treesitter
 }
 
 local keymap = vim.keymap.set
+
+-- colorscheme
+require"no-clown-fiesta".setup{
+  styles = {
+    comments = { italic = true },
+  },
+}
+vim.cmd[[colorscheme no-clown-fiesta]]
 
 -- tabs
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.expandtab = true
+vim.opt.smarttab = true
+vim.opt.autoindent = true
 
 -- line numbers
 vim.wo.number = true
@@ -27,12 +43,32 @@ vim.opt.cursorline = true
 -- Case insensitive search
 vim.o.ignorecase = true
 vim.o.smartcase = true
+vim.o.hlsearch = true
+vim.o.incsearch = true
+
+-- Nowrap
+vim.wo.wrap = false
 
 -- JK for esc
 keymap("i", "jk", "<ESC>", { noremap=true, silent=true })
 
+-- Comment toggling
+require('nvim_comment').setup({comment_empty = false})
+
+-- fuzzy finder
+local builtin = require("telescope.builtin")
+keymap("n", "<leader>ff", builtin.find_files, {})
+keymap("n", "<leader>fg", builtin.live_grep, {})
+keymap("n", "<leader>gw", builtin.grep_string, {})
+keymap("n", "<leader>be", builtin.buffers, {})
+keymap("n", "<leader>fh", builtin.help_tags, {})
+
 -- treesitter
 require"nvim-treesitter.configs".setup{
+  highlight = {
+    enable = true,
+    disable = { "lua" },
+  },
   auto_install = false,
 }
 
@@ -42,9 +78,21 @@ require"lualine".setup{}
 -- Completion by COQ
 vim.g.coq_settings = { auto_start = "shut-up" }
 local coq = require"coq"
+require"coq_3p" {
+  { src = "nvimlua", short_name = "nLUA", conf_only = true },
+}
+
+-- Filetree browser
+keymap("n", "<leader>nt", "<cmd>CHADopen<cr>", { silent = true })
+vim.g.chadtree_settings = {
+  ["theme.text_colour_set"] = "nerdtree_syntax_dark",
+}
+
+-- LSP
+local lspconfig = require"lspconfig"
 
 -- Setup for nvim lua
-require"lspconfig".sumneko_lua.setup(coq.lsp_ensure_capabilities {
+lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities {
   settings = {
     Lua = {
       runtime = {
@@ -68,9 +116,36 @@ require"lspconfig".sumneko_lua.setup(coq.lsp_ensure_capabilities {
   },
 })
 
-local saga = require("lspsaga")
+-- Setup for stree
+lspconfig.syntax_tree.setup{
+  cmd = {"bundle", "exec", "stree", "lsp" },
+}
 
-saga.init_lsp_saga()
+-- Setup for ts/js
+lspconfig.tsserver.setup(coq.lsp_ensure_capabilities{})
+
+-- autoformat
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.{js,jsx,ts,tsx}",
+  callback = function()
+    -- vim.lsp.buf.formatting_seq_sync()
+    vim.lsp.buf.format()
+  end,
+  group = vim.api.nvim_create_augroup("AutocmdForTSJSFormatting", {}),
+})
+
+require"lspsaga".init_lsp_saga()
+
+-- Rubocop setup
+local null_ls = require"null-ls"
+null_ls.setup{
+  sources = {
+    null_ls.builtins.diagnostics.rubocop.with{
+      command = "bundle",
+      args = vim.list_extend({ "exec", "rubocop" }, null_ls.builtins.diagnostics.rubocop._opts.args),
+    },
+  },
+}
 
 -- Lsp finder find the symbol definition implement reference
 -- if there is no implement it will hide
@@ -88,7 +163,7 @@ keymap("n", "gr", "<cmd>Lspsaga rename<CR>", { silent = true })
 -- you can edit the definition file in this flaotwindow
 -- also support open/vsplit/etc operation check definition_action_keys
 -- support tagstack C-t jump back
-keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
+keymap("n", "gd", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
 
 -- Show line diagnostics
 keymap("n", "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
