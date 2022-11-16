@@ -21,7 +21,7 @@ class InstallLuaLanguageServer < OSCommand
   end
 
   def write_wrapper
-    File.open(wrapper_file_path) do |f|
+    File.open(wrapper_file_path, mode: "w") do |f|
       f.write <<~CONTENT.strip
         #!/bin/bash
         exec "$HOME/.local/share/lua-language-server/bin/lua-language-server" "$@"
