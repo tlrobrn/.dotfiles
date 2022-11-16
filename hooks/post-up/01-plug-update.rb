@@ -20,6 +20,10 @@ class PlugUpdate < OSCommand
   def tmp_init_path
     "/tmp/init-plug.vim"
   end
+
+  def skip?
+    true # This only matters for the init.vim config, _not_ init.lua
+  end
 end
 
 PlugUpdate.run!
