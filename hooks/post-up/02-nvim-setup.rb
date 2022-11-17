@@ -2,7 +2,7 @@
 
 require_relative "../os_command"
 
-class PaqSync < OSCommand
+class NvimSetup < OSCommand
   def mac
     sync
   end
@@ -12,8 +12,8 @@ class PaqSync < OSCommand
   end
 
   def sync
-    stream_command("nvim +'PaqSync' +qa")
+    stream_command("nvim +'PaqSync' +'COQdeps' +'CHADdeps' +qa")
   end
 end
 
-PaqSync.run!
+NvimSetup.run!
