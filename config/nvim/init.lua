@@ -20,6 +20,8 @@ require("paq")({
 			vim.cmd("TSUpdate")
 		end,
 	}, -- treesitter
+  "vim-test/vim-test";
+  "preservim/vimux";
 })
 
 local keymap = vim.keymap.set
@@ -84,6 +86,13 @@ require("nvim-treesitter.configs").setup({
 	auto_install = false,
 })
 
+-- Testing
+vim.g["test#strategy"] = "vimux"
+keymap("n", "<leader>rf", ":wa<CR>:TestNearest<CR>", {})
+keymap("n", "<leader>rb", ":wa<CR>:TestFile<CR>", {})
+keymap("n", "<leader>ra", ":wa<CR>:TestSuite<CR>", {})
+keymap("n", "<leader>rl", ":wa<CR>:TestLast<CR>", {})
+
 -- Statusline
 require("lualine").setup({})
 
@@ -136,15 +145,18 @@ lspconfig.syntax_tree.setup({
 -- Setup for ts/js
 lspconfig.tsserver.setup(coq.lsp_ensure_capabilities({}))
 
+-- Setup for ruby
+lspconfig.solargraph.setup{}
+
 -- autoformat
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*.{js,jsx,ts,tsx}",
-	callback = function()
-		-- vim.lsp.buf.formatting_seq_sync()
-		vim.lsp.buf.format()
-	end,
-	group = vim.api.nvim_create_augroup("AutocmdForTSJSFormatting", {}),
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+-- 	pattern = "*.{js,jsx,ts,tsx}",
+-- 	callback = function()
+-- 		-- vim.lsp.buf.formatting_seq_sync()
+-- 		vim.lsp.buf.format()
+-- 	end,
+-- 	group = vim.api.nvim_create_augroup("AutocmdForTSJSFormatting", {}),
+-- })
 
 require("lspsaga").init_lsp_saga()
 
@@ -177,6 +189,7 @@ end
 
 null_ls.setup({
 	on_attach = on_attach,
+  default_timeout = 10000,
 	sources = {
 		null_ls.builtins.diagnostics.rubocop.with({
 			command = "bundle",
@@ -184,12 +197,10 @@ null_ls.setup({
 		}),
 		null_ls.builtins.diagnostics.eslint.with({
 			prefer_local = "node_modules/.bin",
-			timeout = 10000,
 		}),
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.eslint.with({
 			prefer_local = "node_modules/.bin",
-			timeout = 10000,
 		}),
 		null_ls.builtins.formatting.rubocop.with({
 			command = "bundle",
