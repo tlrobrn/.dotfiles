@@ -20,8 +20,8 @@ require("paq")({
 			vim.cmd("TSUpdate")
 		end,
 	}, -- treesitter
-  "vim-test/vim-test";
-  "preservim/vimux";
+	"vim-test/vim-test",
+	"preservim/vimux",
 })
 
 local keymap = vim.keymap.set
@@ -88,10 +88,10 @@ require("nvim-treesitter.configs").setup({
 
 -- Testing
 vim.g["test#strategy"] = "vimux"
-keymap("n", "<leader>rf", ":wa<CR>:TestNearest<CR>", {})
-keymap("n", "<leader>rb", ":wa<CR>:TestFile<CR>", {})
-keymap("n", "<leader>ra", ":wa<CR>:TestSuite<CR>", {})
-keymap("n", "<leader>rl", ":wa<CR>:TestLast<CR>", {})
+keymap("n", "<leader>rf", ":wa<CR>:TestNearest<CR>", { silent = true })
+keymap("n", "<leader>rb", ":wa<CR>:TestFile<CR>", { silent = true })
+keymap("n", "<leader>ra", ":wa<CR>:TestSuite<CR>", { silent = true })
+keymap("n", "<leader>rl", ":wa<CR>:TestLast<CR>", { silent = true })
 
 -- Statusline
 require("lualine").setup({})
@@ -117,7 +117,7 @@ lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
 	settings = {
 		Lua = {
 			runtime = {
-				-- Tell the language server which version of Lua you"re using (most likely LuaJIT in the case of Neovim)
+				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
 				version = "LuaJIT",
 			},
 			diagnostics = {
@@ -146,7 +146,7 @@ lspconfig.syntax_tree.setup({
 lspconfig.tsserver.setup(coq.lsp_ensure_capabilities({}))
 
 -- Setup for ruby
-lspconfig.solargraph.setup{}
+lspconfig.solargraph.setup({})
 
 -- autoformat
 -- vim.api.nvim_create_autocmd("BufWritePre", {
@@ -189,7 +189,7 @@ end
 
 null_ls.setup({
 	on_attach = on_attach,
-  default_timeout = 10000,
+	default_timeout = 10000,
 	sources = {
 		null_ls.builtins.diagnostics.rubocop.with({
 			command = "bundle",
