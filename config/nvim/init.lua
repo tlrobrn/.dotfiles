@@ -22,6 +22,7 @@ require("paq")({
 	}, -- treesitter
 	"vim-test/vim-test",
 	"preservim/vimux",
+	"simrat39/rust-tools.nvim",
 })
 
 local keymap = vim.keymap.set
@@ -160,6 +161,20 @@ lspconfig.solargraph.setup({})
 
 require("lspsaga").init_lsp_saga()
 
+-- Rust setup
+local rt = require("rust-tools")
+
+rt.setup({
+	server = {
+		on_attach = function(_, bufnr)
+			-- Hover actions
+			vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+			-- Code action groups
+			vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+		end,
+	},
+})
+
 -- Formatting setup
 local null_ls = require("null-ls")
 
@@ -206,6 +221,7 @@ null_ls.setup({
 			command = "bundle",
 			args = vim.list_extend({ "exec", "rubocop" }, null_ls.builtins.formatting.rubocop._opts.args),
 		}),
+		null_ls.builtins.formatting.rustfmt,
 	},
 })
 
