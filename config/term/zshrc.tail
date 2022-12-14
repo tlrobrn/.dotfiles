@@ -17,3 +17,5 @@ eval "$(rbenv init - zsh)"
 
 # opam configuration
 [[ ! -r /Users/taylor/.opam/opam-init/init.zsh ]] || source /Users/taylor/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+[ -f "/Users/taylor/.ghcup/env" ] && source "/Users/taylor/.ghcup/env" # ghcup-env
