@@ -147,7 +147,7 @@ lspconfig.syntax_tree.setup({
 lspconfig.tsserver.setup(coq.lsp_ensure_capabilities({}))
 
 -- Setup for ruby
-lspconfig.solargraph.setup({})
+lspconfig.solargraph.setup(coq.lsp_ensure_capabilities({}))
 
 -- autoformat
 -- vim.api.nvim_create_autocmd("BufWritePre", {
