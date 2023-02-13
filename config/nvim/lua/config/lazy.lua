@@ -11,4 +11,6 @@ end
 bootstrap_lazy()
 require("lazy").setup("plugins", {
   defaults = { lazy = true, version = nil },
+  install = { missing = true },
 })
+vim.keymap.set("n", "<leader>z", "<cmd>:Lazy<cr>", { desc = "Plugin Manager " })
