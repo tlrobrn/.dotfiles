@@ -24,7 +24,7 @@ class InstallStylua < OSCommand
   end
 
   def version
-    "v0.15.2"
+    "v0.17.1"
   end
 end
 
