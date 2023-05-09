@@ -14,4 +14,4 @@
   l = log --graph --oneline
 
 [push]
-	autoSetupRemote = true
+  autoSetupRemote = true
