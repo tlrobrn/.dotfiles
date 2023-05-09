@@ -4,7 +4,7 @@ require_relative "../os_command"
 
 class InstallLuaLanguageServer < OSCommand
   def mac
-    install
+    # install
   end
 
   def debian
