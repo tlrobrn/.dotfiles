@@ -8,7 +8,7 @@ class InstallSolargraph < OSCommand
   end
 
   def debian
-    # install
+    install
   end
 
   def install

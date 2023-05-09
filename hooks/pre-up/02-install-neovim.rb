@@ -17,7 +17,7 @@ class InstallNeovim < OSCommand
   end
 
   def path
-    "~/.local/bin/nvim"
+    File.expand_path("~/.local/bin/nvim")
   end
 end
 
