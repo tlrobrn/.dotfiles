@@ -12,7 +12,7 @@ class InstallPrettierd < OSCommand
   end
 
   def install
-    stream_command("npm install -g @fsouza/prettierd")
+    stream_command("ASDF_NODEJS_VERSION=18 npm install -g @fsouza/prettierd")
   end
 end
 
