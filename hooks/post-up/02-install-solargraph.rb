@@ -12,8 +12,8 @@ class InstallSolargraph < OSCommand
   end
 
   def install
-    stream_command("RBENV_VERSION=3.1 gem install --user-install solargraph")
-    stream_command("RBENV_VERSION=3.1 solargraph download-core")
+    stream_command("RBENV_VERSION=3.2 gem install --user-install solargraph")
+    stream_command("RBENV_VERSION=3.2 solargraph download-core")
   end
 end
 
