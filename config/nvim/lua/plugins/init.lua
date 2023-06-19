@@ -1,6 +1,7 @@
 return {
   { "lewis6991/impatient.nvim", lazy = false },
   "nvim-lua/plenary.nvim",
+  { "tpope/vim-rails", lazy = false },
   {
     "kdheepak/monochrome.nvim",
     lazy = false,
