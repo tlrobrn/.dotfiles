@@ -22,6 +22,7 @@ return {
     config = function()
       require("gitsigns").setup({
         current_line_blame = true,
+        current_line_blame_formatter = "<abbrev_sha> - <author_time>:<author>",
       })
     end,
   },
