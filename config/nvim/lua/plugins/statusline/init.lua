@@ -8,6 +8,7 @@ return {
 
       require("lualine").setup({
         options = {
+          theme = "nordic",
           component_separators = {},
           section_separators = {},
           disabled_filetypes = {
