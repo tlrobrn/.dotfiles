@@ -12,7 +12,14 @@ vim.opt.autoindent = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
-vim.opt.statuscolumn = "%s %l %r"
+
+function Statuscolumn()
+  local lines = vim.fn.line("$")
+  local minwidth = #tostring(lines)
+
+  return "%s %" .. minwidth .. "l %" .. minwidth .. "r "
+end
+vim.opt.statuscolumn = "%{%v:lua.Statuscolumn()%}"
 
 -- Case insensitive search
 vim.opt.ignorecase = true
