@@ -12,6 +12,7 @@ vim.opt.autoindent = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
+vim.opt.statuscolumn = "%s %l %r"
 
 -- Case insensitive search
 vim.opt.ignorecase = true
