@@ -13,3 +13,11 @@ source $HOME/.config/term/zshrc.user
 
 # Tail
 source $HOME/.config/term/zshrc.tail
+
+if type devbox &> /dev/null; then
+  eval "$(devbox global shellenv)"
+fi
+
+if type starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
