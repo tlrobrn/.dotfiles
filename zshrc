@@ -21,3 +21,10 @@ fi
 if type starship &> /dev/null; then
   eval "$(starship init zsh)"
 fi
+
+if type direnv &> /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
+
+# allow emacs style CTRL-A, CTRL-E
+bindkey -e
